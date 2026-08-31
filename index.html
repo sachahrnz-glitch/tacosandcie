@@ -6,52 +6,89 @@
 
 <title>TACOS — 3 Viandes. 3 Choix. 1 Mission.</title>
 
-<meta name="description" content="Tacos halal — 1, 2 ou 3 viandes. Commandez votre tacos en ligne.">
+<meta name="description" content="Menu tacos halal — Compose ton tacos et commande en ligne.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap');
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-:root{
-    --black:#070707;
-    --black2:#111111;
-    --gold:#f5a900;
-    --gold2:#ffca28;
-    --red:#c71919;
-    --red2:#ff2929;
-    --cream:#f3ead5;
-    --green:#809d13;
-    --border:rgba(245,169,0,.45);
+:root {
+    --black: #050505;
+    --black-light: #111111;
+    --black-card: #151515;
+
+    --gold: #f5a900;
+    --gold-light: #ffc72c;
+
+    --red: #c71919;
+    --red-light: #ff2929;
+
+    --green: #8aa91a;
+    --green-light: #b5d82b;
+
+    --cream: #f3ead5;
+
+    --border: rgba(245, 169, 0, 0.45);
+
+    --shadow: 0 15px 45px rgba(0,0,0,.65);
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
+body {
     background:
-        radial-gradient(circle at 50% 0%,rgba(130,75,0,.25),transparent 35%),
-        radial-gradient(circle at 90% 50%,rgba(120,60,0,.12),transparent 30%),
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(150,90,0,.25),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(130,60,0,.12),
+            transparent 30%
+        ),
         #050505;
-    color:white;
-    font-family:'Roboto',sans-serif;
-    min-height:100vh;
+
+    color: white;
+
+    font-family: "Roboto", sans-serif;
+
+    min-height: 100vh;
 }
+
 
 /* Texture */
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    opacity:.06;
+body::before {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .035;
+
     background-image:
         repeating-linear-gradient(
             45deg,
@@ -60,762 +97,1355 @@ body::before{
             transparent 1px,
             transparent 5px
         );
-    z-index:999;
+
+    z-index: 9999;
 }
 
-/* HEADER */
 
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(5,5,5,.94);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid var(--border);
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background: rgba(5,5,5,.94);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
 }
 
-.nav{
-    max-width:1200px;
-    margin:auto;
-    min-height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:10px 20px;
+.nav {
+    max-width: 1200px;
+
+    min-height: 75px;
+
+    margin: auto;
+
+    padding: 10px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
-.logo{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:42px;
-    letter-spacing:4px;
-    color:var(--cream);
-    text-shadow:3px 3px 0 #8a5c00;
+.logo {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 42px;
+
+    letter-spacing: 4px;
+
+    color: var(--cream);
+
+    text-shadow:
+        3px 3px 0 #5e4100,
+        0 0 15px rgba(245,169,0,.15);
 }
 
-.logo span{
-    color:var(--gold);
+.logo span {
+    color: var(--gold);
 }
 
-.nav-links{
-    display:flex;
-    gap:28px;
-    list-style:none;
+.nav-links {
+    display: flex;
+
+    gap: 25px;
+
+    list-style: none;
 }
 
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:15px;
-    transition:.25s;
+.nav-links a {
+    color: white;
+
+    text-decoration: none;
+
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 15px;
+
+    transition: .25s;
 }
 
-.nav-links a:hover{
-    color:var(--gold);
+.nav-links a:hover {
+    color: var(--gold);
 }
 
-.cart-button{
-    border:1px solid var(--gold);
-    background:#111;
-    color:white;
-    padding:12px 18px;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:800;
-    transition:.25s;
+.cart-button {
+    border: 1px solid var(--gold);
+
+    background: #111;
+
+    color: white;
+
+    padding: 11px 17px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: 800;
+
+    transition: .25s;
+
+    white-space: nowrap;
 }
 
-.cart-button:hover{
-    background:var(--gold);
-    color:#000;
+.cart-button:hover {
+    background: var(--gold);
+
+    color: #000;
 }
 
-.cart-count{
-    background:var(--red);
-    padding:3px 7px;
-    border-radius:20px;
-    margin-left:5px;
+.cart-count {
+    background: var(--red);
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    margin-left: 5px;
 }
 
-/* HERO */
 
-.hero{
-    max-width:1200px;
-    margin:auto;
-    padding:65px 20px 45px;
-    text-align:center;
-    position:relative;
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 65px 20px 50px;
+
+    text-align: center;
+
+    position: relative;
 }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:300px;
-    left:50%;
-    top:20px;
-    transform:translateX(-50%);
-    background:radial-gradient(circle,rgba(245,169,0,.14),transparent 65%);
-    pointer-events:none;
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+
+    height: 350px;
+
+    left: 50%;
+
+    top: 0;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,169,0,.15),
+            transparent 65%
+        );
+
+    pointer-events: none;
 }
 
-.hero h1{
-    position:relative;
-    font-family:'Bebas Neue',sans-serif;
-    font-size:clamp(90px,16vw,180px);
-    line-height:.75;
-    letter-spacing:5px;
-    color:var(--cream);
+.stars {
+    position: relative;
+
+    color: var(--gold);
+
+    letter-spacing: 14px;
+
+    font-size: 27px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    position: relative;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: clamp(90px, 16vw, 180px);
+
+    line-height: .75;
+
+    letter-spacing: 6px;
+
+    color: var(--cream);
+
     text-shadow:
         5px 5px 0 #2d2415,
-        0 0 25px rgba(255,183,0,.15);
+        0 0 30px rgba(255,183,0,.12);
 }
 
-.hero-line{
-    width:140px;
-    height:3px;
-    background:var(--gold);
-    margin:30px auto 20px;
-    box-shadow:0 0 12px rgba(245,169,0,.5);
+.hero-line {
+    width: 140px;
+
+    height: 3px;
+
+    background: var(--gold);
+
+    margin: 30px auto 20px;
+
+    box-shadow: 0 0 15px rgba(245,169,0,.45);
 }
 
-.hero-sub{
-    font-family:'Oswald',sans-serif;
-    font-size:clamp(20px,3vw,32px);
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:2px;
+.hero-sub {
+    font-family: "Oswald", sans-serif;
+
+    font-size: clamp(18px, 3vw, 30px);
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
 }
 
-.hero-sub span{
-    color:var(--gold);
+.hero-sub span {
+    color: var(--gold);
 }
 
-.stars{
-    color:var(--gold);
-    letter-spacing:15px;
-    font-size:27px;
-    margin:20px 0;
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section {
+    max-width: 1150px;
+
+    margin: 0 auto 60px;
+
+    padding: 0 20px;
 }
 
-/* SECTION */
+.section-title {
+    text-align: center;
 
-.section{
-    max-width:1150px;
-    margin:0 auto 60px;
-    padding:0 20px;
+    font-family: "Bebas Neue", sans-serif;
+
+    color: var(--gold);
+
+    font-size: 48px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 30px;
 }
 
-.section-title{
-    text-align:center;
-    font-family:'Bebas Neue',sans-serif;
-    color:var(--gold);
-    font-size:48px;
-    letter-spacing:2px;
-    margin-bottom:30px;
+.section-title::after {
+    content: "";
+
+    display: block;
+
+    width: 90px;
+
+    height: 3px;
+
+    background: var(--red);
+
+    margin: 10px auto;
 }
 
-.section-title::after{
-    content:"";
-    display:block;
-    width:90px;
-    height:3px;
-    background:var(--red);
-    margin:10px auto;
+
+/* =====================================================
+   VIANDES
+===================================================== */
+
+.meats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
 }
 
-/* MEATS */
+.meat {
+    position: relative;
 
-.meats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
+    overflow: hidden;
 
-.meat{
-    position:relative;
-    overflow:hidden;
-    border:1px solid var(--border);
+    border: 1px solid var(--border);
+
     background:
-        linear-gradient(145deg,#171717,#080808);
-    border-radius:14px;
-    padding:30px 15px;
-    text-align:center;
-    cursor:pointer;
-    transition:.3s;
+        linear-gradient(
+            145deg,
+            #171717,
+            #080808
+        );
+
+    border-radius: 14px;
+
+    padding: 30px 15px;
+
+    text-align: center;
+
+    transition: .3s;
 }
 
-.meat::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:radial-gradient(circle at 50% 30%,rgba(245,169,0,.13),transparent 60%);
-    opacity:0;
-    transition:.3s;
+.meat:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--gold);
+
+    box-shadow:
+        0 10px 35px rgba(245,169,0,.15);
 }
 
-.meat:hover,
-.meat.selected{
-    transform:translateY(-6px);
-    border-color:var(--gold);
-    box-shadow:0 10px 35px rgba(245,169,0,.15);
+.meat-icon {
+    font-size: 65px;
+
+    margin-bottom: 15px;
 }
 
-.meat:hover::before,
-.meat.selected::before{
-    opacity:1;
+.meat h3 {
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 25px;
 }
 
-.meat-icon{
-    font-size:72px;
-    margin-bottom:15px;
-    position:relative;
+.meat p {
+    color: #999;
+
+    margin-top: 5px;
 }
 
-.meat h3{
-    position:relative;
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:25px;
+
+/* =====================================================
+   CARTES TACOS
+===================================================== */
+
+.tacos {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
 }
 
-.meat p{
-    color:#aaa;
-    margin-top:5px;
-}
+.taco-card {
+    border: 1px solid var(--border);
 
-/* TACOS */
+    border-radius: 15px;
 
-.tacos{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
+    overflow: hidden;
 
-.taco-card{
-    border:1px solid var(--border);
-    border-radius:15px;
-    overflow:hidden;
     background:
-        linear-gradient(145deg,#191919,#080808);
-    transition:.3s;
+        linear-gradient(
+            145deg,
+            #191919,
+            #080808
+        );
+
+    transition: .3s;
 }
 
-.taco-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 12px 35px rgba(0,0,0,.8);
-    border-color:var(--gold);
+.taco-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: var(--shadow);
+
+    border-color: var(--gold);
 }
 
-.taco-top{
-    padding:28px 20px;
-    text-align:center;
+.taco-top {
+    padding: 28px 20px;
+
+    text-align: center;
+
     background:
-        radial-gradient(circle at 50% 30%,rgba(245,169,0,.15),transparent 65%);
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(245,169,0,.15),
+            transparent 65%
+        );
 }
 
-.taco-emoji{
-    font-size:95px;
-    filter:drop-shadow(0 10px 10px #000);
+.taco-emoji {
+    font-size: 90px;
+
+    filter: drop-shadow(
+        0 10px 10px #000
+    );
+
+    margin-bottom: 10px;
 }
 
-.taco-name{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:38px;
-    letter-spacing:2px;
+.taco-name {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 38px;
+
+    letter-spacing: 2px;
 }
 
-.taco-price{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:55px;
-    color:var(--gold);
+.taco-price {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 55px;
+
+    color: var(--gold);
 }
 
-.taco-price small{
-    font-size:25px;
+.taco-price small {
+    font-size: 25px;
 }
 
-.taco-content{
-    padding:20px;
+.taco-content {
+    padding: 20px;
 }
 
-.taco-content p{
-    color:#aaa;
-    line-height:1.5;
-    margin-bottom:20px;
+.taco-content p {
+    color: #aaa;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
 }
 
-.order-btn{
-    width:100%;
-    border:0;
-    padding:15px;
-    border-radius:7px;
-    background:linear-gradient(90deg,#b00d0d,#e01b1b);
-    color:white;
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:18px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.25s;
-}
+.order-btn {
+    width: 100%;
 
-.order-btn:hover{
-    background:linear-gradient(90deg,#e01b1b,#ff3333);
-    transform:scale(1.02);
-}
+    border: 0;
 
-/* BUILDER */
+    padding: 15px;
 
-.builder{
-    border:1px solid var(--border);
+    border-radius: 7px;
+
     background:
-        linear-gradient(135deg,rgba(25,25,25,.98),rgba(8,8,8,.98));
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
+        linear-gradient(
+            90deg,
+            #b00d0d,
+            #e01b1b
+        );
+
+    color: white;
+
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s;
 }
 
-.builder-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:35px;
-}
-
-.builder h3{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:24px;
-    margin-bottom:15px;
-    color:var(--gold);
-}
-
-.choice-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.choice{
-    border:1px solid #333;
-    background:#111;
-    padding:14px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.2s;
-    text-align:center;
-}
-
-.choice:hover{
-    border-color:var(--gold);
-}
-
-.choice.selected{
-    background:rgba(245,169,0,.12);
-    border-color:var(--gold);
-    box-shadow:inset 0 0 20px rgba(245,169,0,.05);
-}
-
-.choice strong{
-    display:block;
-}
-
-.choice small{
-    color:#aaa;
-}
-
-.builder-bottom{
-    margin-top:30px;
-    padding-top:25px;
-    border-top:1px solid #333;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.total{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:45px;
-}
-
-.total span{
-    color:var(--gold);
-}
-
-.add-builder{
-    background:var(--gold);
-    color:#050505;
-    border:0;
-    border-radius:8px;
-    padding:17px 35px;
-    font-family:'Oswald',sans-serif;
-    font-weight:700;
-    text-transform:uppercase;
-    font-size:18px;
-    cursor:pointer;
-}
-
-.add-builder:hover{
-    background:var(--gold2);
-}
-
-/* BIGOR */
-
-.bigor{
-    border:1px solid var(--gold);
+.order-btn:hover {
     background:
-        linear-gradient(120deg,#111,#211707,#111);
-    border-radius:18px;
-    padding:35px;
-    position:relative;
-    overflow:hidden;
+        linear-gradient(
+            90deg,
+            #e01b1b,
+            #ff3333
+        );
+
+    transform: scale(1.02);
 }
 
-.bigor::after{
-    content:"+15€";
-    position:absolute;
-    right:30px;
-    top:30px;
-    font-family:'Bebas Neue',sans-serif;
-    font-size:70px;
-    color:var(--gold);
-    opacity:.18;
+
+/* =====================================================
+   COMPOSER
+===================================================== */
+
+.builder {
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25,25,25,.98),
+            rgba(8,8,8,.98)
+        );
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow: var(--shadow);
 }
 
-.bigor-title{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:52px;
-    text-transform:uppercase;
+.builder-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
 }
 
-.bigor-title span{
-    color:var(--gold);
+.builder h3 {
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    font-size: 23px;
+
+    margin-bottom: 15px;
+
+    color: var(--gold);
 }
 
-.bigor-items{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin:25px 0;
+.choice-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 10px;
 }
 
-.bigor-item{
-    background:#0b0b0b;
-    border:1px solid #333;
-    padding:25px;
-    border-radius:10px;
-    text-align:center;
+.choice {
+    border: 1px solid #333;
+
+    background: #111;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    text-align: center;
 }
 
-.bigor-item .icon{
-    font-size:50px;
+.choice:hover {
+    border-color: var(--gold);
 }
 
-.bigor-item h4{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    margin-top:8px;
+.choice.selected {
+    background:
+        rgba(245,169,0,.12);
+
+    border-color: var(--gold);
+
+    box-shadow:
+        inset 0 0 20px rgba(245,169,0,.05);
 }
 
-.bigor-price{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:45px;
-    color:var(--gold);
+.choice strong {
+    display: block;
 }
 
-/* DELIVERY */
-
-.delivery{
-    border:1px solid #718d11;
-    background:linear-gradient(135deg,#111,#151b06);
-    border-radius:15px;
-    padding:25px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+.choice small {
+    color: #aaa;
 }
 
-.delivery-box{
-    text-align:center;
-    padding:20px;
+.builder-bottom {
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #333;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
-.delivery-icon{
-    font-size:50px;
+.total {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 45px;
 }
 
-.delivery h3{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    font-size:28px;
+.total span {
+    color: var(--gold);
 }
 
-.delivery .free{
-    color:#a9ce21;
-    font-size:25px;
-    font-weight:900;
+.add-builder {
+    background: var(--gold);
+
+    color: #050505;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    padding: 17px 35px;
+
+    font-family: "Oswald", sans-serif;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    font-size: 18px;
+
+    cursor: pointer;
 }
 
-.delivery .paid{
-    color:var(--red2);
-    font-size:25px;
-    font-weight:900;
+.add-builder:hover {
+    background: var(--gold-light);
 }
 
-/* HALAL */
 
-.halal{
-    text-align:center;
-    padding:30px 20px 80px;
-    border-top:1px solid #222;
+/* =====================================================
+   BOISSONS
+===================================================== */
+
+.drinks {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
 }
 
-.halal-badge{
-    display:inline-flex;
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:2px solid #849b2c;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    margin-bottom:15px;
+.drink-card {
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #080808
+        );
+
+    transition: .3s;
 }
 
-.halal h2{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    color:var(--cream);
+.drink-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--gold);
+
+    box-shadow: var(--shadow);
 }
 
-/* CART */
+.drink-top {
+    padding: 30px 20px;
 
-.cart-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    z-index:200;
-    opacity:0;
-    visibility:hidden;
-    transition:.3s;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(245,169,0,.13),
+            transparent 65%
+        );
 }
 
-.cart-overlay.open{
-    opacity:1;
-    visibility:visible;
+
+/* Canette */
+
+.monster-can {
+    width: 105px;
+
+    height: 155px;
+
+    margin: 0 auto 20px;
+
+    border-radius:
+        15px 15px 20px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 23px;
+
+    letter-spacing: 2px;
+
+    transform: rotate(-4deg);
+
+    box-shadow:
+        8px 12px 20px rgba(0,0,0,.8),
+        inset 5px 0 12px rgba(255,255,255,.15),
+        inset -8px 0 15px rgba(0,0,0,.4);
+
+    transition: .3s;
 }
 
-.cart{
-    position:absolute;
-    right:0;
-    top:0;
-    height:100%;
-    width:min(450px,100%);
-    background:#090909;
-    border-left:1px solid var(--gold);
-    transform:translateX(100%);
-    transition:.3s;
-    display:flex;
-    flex-direction:column;
+.drink-card:hover .monster-can {
+    transform:
+        rotate(0deg)
+        translateY(-8px)
+        scale(1.05);
 }
 
-.cart-overlay.open .cart{
-    transform:translateX(0);
+.monster-logo {
+    font-size: 38px;
+
+    font-weight: 900;
+
+    line-height: 1;
 }
 
-.cart-header{
-    padding:25px;
-    border-bottom:1px solid #333;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.monster-text {
+    font-size: 18px;
+
+    margin-top: 10px;
 }
 
-.cart-header h2{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:35px;
-    color:var(--gold);
+
+/* Original */
+
+.monster-original {
+    background:
+        linear-gradient(
+            90deg,
+            #061006,
+            #159536,
+            #061006
+        );
+
+    color: white;
+
+    text-shadow:
+        2px 2px 0 #000,
+        0 0 10px #6aff7b;
 }
 
-.close-cart{
-    background:none;
-    border:0;
-    color:white;
-    font-size:30px;
-    cursor:pointer;
+
+/* Ultra */
+
+.monster-ultra {
+    background:
+        linear-gradient(
+            90deg,
+            #cfcfcf,
+            #ffffff,
+            #bcbcbc
+        );
+
+    color: #111;
+
+    text-shadow:
+        1px 1px 0 #fff;
 }
 
-.cart-items{
-    flex:1;
-    overflow:auto;
-    padding:20px;
+
+/* Juiced */
+
+.monster-juiced {
+    background:
+        linear-gradient(
+            90deg,
+            #681504,
+            #e34b18,
+            #681504
+        );
+
+    color: white;
+
+    text-shadow:
+        2px 2px 0 #000;
 }
 
-.empty{
-    text-align:center;
-    color:#777;
-    padding:60px 20px;
+
+/* =====================================================
+   BIGOR
+===================================================== */
+
+.bigor {
+    border: 1px solid var(--gold);
+
+    background:
+        linear-gradient(
+            120deg,
+            #111,
+            #211707,
+            #111
+        );
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    position: relative;
+
+    overflow: hidden;
 }
 
-.cart-item{
-    border-bottom:1px solid #2b2b2b;
-    padding:15px 0;
+.bigor::after {
+    content: "+15€";
+
+    position: absolute;
+
+    right: 30px;
+
+    top: 20px;
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 90px;
+
+    color: var(--gold);
+
+    opacity: .12;
 }
 
-.cart-item-top{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
+.bigor-title {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 52px;
+
+    text-transform: uppercase;
 }
 
-.cart-item-name{
-    font-weight:800;
+.bigor-title span {
+    color: var(--gold);
 }
 
-.cart-item-price{
-    color:var(--gold);
-    font-weight:900;
+.bigor-subtitle {
+    color: #aaa;
+
+    margin-top: 5px;
 }
 
-.quantity{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:10px;
+.bigor-items {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+    margin: 25px 0;
 }
 
-.quantity button{
-    width:28px;
-    height:28px;
-    border-radius:5px;
-    border:1px solid #555;
-    background:#171717;
-    color:white;
-    cursor:pointer;
+.bigor-item {
+    background: #0b0b0b;
+
+    border: 1px solid #333;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    text-align: center;
 }
 
-.remove{
-    color:#e33;
-    background:none!important;
-    border:0!important;
-    margin-left:auto;
+.bigor-item .icon {
+    font-size: 50px;
 }
 
-.cart-footer{
-    border-top:1px solid #333;
-    padding:20px;
+.bigor-item h4 {
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    margin-top: 8px;
 }
 
-.cart-total{
-    display:flex;
-    justify-content:space-between;
-    font-size:25px;
-    font-weight:900;
-    margin-bottom:15px;
+.bigor-price {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 45px;
+
+    color: var(--gold);
+
+    margin-bottom: 15px;
 }
 
-.cart-total span{
-    color:var(--gold);
+
+/* =====================================================
+   LIVRAISON
+===================================================== */
+
+.delivery {
+    border: 1px solid #718d11;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111,
+            #151b06
+        );
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
 }
 
-.checkout{
-    width:100%;
-    padding:17px;
-    background:var(--gold);
-    border:0;
-    border-radius:7px;
-    font-weight:900;
-    font-size:17px;
-    cursor:pointer;
+.delivery-box {
+    text-align: center;
+
+    padding: 20px;
 }
 
-.checkout:hover{
-    background:var(--gold2);
+.delivery-icon {
+    font-size: 50px;
+
+    margin-bottom: 8px;
 }
 
-/* TOAST */
+.delivery h3 {
+    font-family: "Oswald", sans-serif;
 
-.toast{
-    position:fixed;
-    left:50%;
-    bottom:30px;
-    transform:translate(-50%,30px);
-    background:#151515;
-    border:1px solid var(--gold);
-    padding:15px 25px;
-    border-radius:8px;
-    z-index:500;
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
+    text-transform: uppercase;
+
+    font-size: 28px;
 }
 
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+.delivery .free {
+    color: var(--green-light);
+
+    font-size: 25px;
+
+    font-weight: 900;
 }
 
-/* RESPONSIVE */
+.delivery .paid {
+    color: var(--red-light);
 
-@media(max-width:800px){
+    font-size: 25px;
 
-    .nav-links{
-        display:none;
-    }
+    font-weight: 900;
+}
 
-    .logo{
-        font-size:34px;
-    }
 
-    .hero{
-        padding-top:45px;
+/* =====================================================
+   HALAL
+===================================================== */
+
+.halal {
+    text-align: center;
+
+    padding: 30px 20px 80px;
+
+    border-top: 1px solid #222;
+}
+
+.halal-badge {
+    display: inline-flex;
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+
+    border: 2px solid #849b2c;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+.halal h2 {
+    font-family: "Oswald", sans-serif;
+
+    text-transform: uppercase;
+
+    color: var(--cream);
+
+    font-size: 22px;
+}
+
+
+/* =====================================================
+   PANIER
+===================================================== */
+
+.cart-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.75);
+
+    z-index: 3000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .3s;
+}
+
+.cart-overlay.open {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.cart {
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    height: 100%;
+
+    width: min(450px,100%);
+
+    background: #090909;
+
+    border-left: 1px solid var(--gold);
+
+    transform: translateX(100%);
+
+    transition: .3s;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.cart-overlay.open .cart {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 25px;
+
+    border-bottom: 1px solid #333;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 35px;
+
+    color: var(--gold);
+}
+
+.close-cart {
+    background: none;
+
+    border: 0;
+
+    color: white;
+
+    font-size: 32px;
+
+    cursor: pointer;
+}
+
+.cart-items {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 20px;
+}
+
+.empty {
+    text-align: center;
+
+    color: #777;
+
+    padding: 60px 20px;
+}
+
+.cart-item {
+    border-bottom: 1px solid #2b2b2b;
+
+    padding: 15px 0;
+}
+
+.cart-item-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.cart-item-name {
+    font-weight: 900;
+
+    margin-bottom: 5px;
+}
+
+.cart-item-description {
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+.cart-item-price {
+    color: var(--gold);
+
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+.quantity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.quantity button {
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 5px;
+
+    border: 1px solid #555;
+
+    background: #171717;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.quantity button:hover {
+    border-color: var(--gold);
+}
+
+.quantity .remove {
+    width: auto;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ef4444;
+
+    margin-left: auto;
+
+    font-size: 12px;
+}
+
+.cart-footer {
+    border-top: 1px solid #333;
+
+    padding: 20px;
+}
+
+.cart-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    margin-bottom: 15px;
+}
+
+.cart-total span:last-child {
+    color: var(--gold);
+}
+
+.delivery-total {
+    color: #999;
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+}
+
+.checkout {
+    width: 100%;
+
+    padding: 17px;
+
+    background: var(--gold);
+
+    color: #000;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    font-weight: 900;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+.checkout:hover {
+    background: var(--gold-light);
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 30px;
+
+    transform:
+        translate(-50%,30px);
+
+    background: #151515;
+
+    border: 1px solid var(--gold);
+
+    padding: 15px 25px;
+
+    border-radius: 8px;
+
+    z-index: 5000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: .3s;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%,0);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width: 900px) {
+
+    .nav-links {
+        display: none;
     }
 
     .meats,
     .tacos,
-    .builder-grid,
-    .delivery{
-        grid-template-columns:1fr;
+    .drinks {
+        grid-template-columns: 1fr;
     }
 
-    .bigor-items{
-        grid-template-columns:1fr;
+    .builder-grid {
+        grid-template-columns: 1fr;
     }
 
-    .bigor{
-        padding:25px 18px;
+    .delivery {
+        grid-template-columns: 1fr;
     }
 
-    .bigor::after{
-        display:none;
+    .bigor-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    .logo {
+        font-size: 34px;
     }
 
-    .builder{
-        padding:20px;
+    .hero {
+        padding-top: 45px;
     }
 
-    .builder-bottom{
-        flex-direction:column;
-        align-items:stretch;
+    .hero h1 {
+        font-size: 90px;
     }
 
-    .add-builder{
-        width:100%;
+    .section-title {
+        font-size: 40px;
     }
 
-    .section-title{
-        font-size:40px;
+    .builder {
+        padding: 20px;
+    }
+
+    .choice-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .builder-bottom {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .add-builder {
+        width: 100%;
+    }
+
+    .bigor {
+        padding: 25px 18px;
+    }
+
+    .bigor-title {
+        font-size: 42px;
+    }
+
+    .bigor::after {
+        display: none;
     }
 }
 
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
     <nav class="nav">
 
         <div class="logo">
@@ -823,42 +1453,93 @@ header{
         </div>
 
         <ul class="nav-links">
-            <li><a href="#tacos">Tacos</a></li>
-            <li><a href="#composer">Composer</a></li>
-            <li><a href="#bigor">Bigor</a></li>
-            <li><a href="#livraison">Livraison</a></li>
+
+            <li>
+                <a href="#tacos">
+                    Tacos
+                </a>
+            </li>
+
+            <li>
+                <a href="#composer">
+                    Composer
+                </a>
+            </li>
+
+            <li>
+                <a href="#boissons">
+                    Boissons
+                </a>
+            </li>
+
+            <li>
+                <a href="#bigor">
+                    Bigor
+                </a>
+            </li>
+
+            <li>
+                <a href="#livraison">
+                    Livraison
+                </a>
+            </li>
+
         </ul>
 
-        <button class="cart-button" onclick="openCart()">
+        <button
+            class="cart-button"
+            onclick="openCart()">
+
             🛒 Panier
-            <span class="cart-count" id="cartCount">0</span>
+
+            <span
+                class="cart-count"
+                id="cartCount">
+                0
+            </span>
+
         </button>
 
     </nav>
+
 </header>
 
 
 <main>
 
-<!-- HERO -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
-    <div class="stars">★ ★ ★</div>
+    <div class="stars">
+        ★ ★ ★
+    </div>
 
-    <h1>TACOS</h1>
+    <h1>
+        TACOS
+    </h1>
 
     <div class="hero-line"></div>
 
     <div class="hero-sub">
+
         3 VIANDES. 3 CHOIX.
-        <span>1 SEULE MISSION : LE GOÛT.</span>
+
+        <span>
+            1 SEULE MISSION : LE GOÛT.
+        </span>
+
     </div>
 
 </section>
 
 
-<!-- VIANDES -->
+<!-- =====================================================
+     VIANDES
+===================================================== -->
 
 <section class="section">
 
@@ -869,21 +1550,53 @@ header{
     <div class="meats">
 
         <div class="meat">
-            <div class="meat-icon">🍗</div>
-            <h3>Poulet</h3>
-            <p>Tendre & généreux</p>
+
+            <div class="meat-icon">
+                🍗
+            </div>
+
+            <h3>
+                Poulet
+            </h3>
+
+            <p>
+                Tendre & généreux
+            </p>
+
         </div>
 
-        <div class="meat">
-            <div class="meat-icon">🥩</div>
-            <h3>Cordon Bleu</h3>
-            <p>Fondant & gourmand</p>
-        </div>
 
         <div class="meat">
-            <div class="meat-icon">🥩</div>
-            <h3>Steak Haché</h3>
-            <p>Puissant & savoureux</p>
+
+            <div class="meat-icon">
+                🥩
+            </div>
+
+            <h3>
+                Cordon Bleu
+            </h3>
+
+            <p>
+                Fondant & gourmand
+            </p>
+
+        </div>
+
+
+        <div class="meat">
+
+            <div class="meat-icon">
+                🥩
+            </div>
+
+            <h3>
+                Steak Haché
+            </h3>
+
+            <p>
+                Puissant & savoureux
+            </p>
+
         </div>
 
     </div>
@@ -891,9 +1604,13 @@ header{
 </section>
 
 
-<!-- TACOS -->
+<!-- =====================================================
+     TACOS
+===================================================== -->
 
-<section class="section" id="tacos">
+<section
+    class="section"
+    id="tacos">
 
     <h2 class="section-title">
         NOS TACOS
@@ -901,25 +1618,40 @@ header{
 
     <div class="tacos">
 
+
+        <!-- 1 VIANDE -->
+
         <article class="taco-card">
 
             <div class="taco-top">
-                <div class="taco-emoji">🌯</div>
-                <div class="taco-name">1 VIANDE</div>
-                <div class="taco-price">8<small>€</small></div>
+
+                <div class="taco-emoji">
+                    🌯
+                </div>
+
+                <div class="taco-name">
+                    1 VIANDE
+                </div>
+
+                <div class="taco-price">
+                    8<small>€</small>
+                </div>
+
             </div>
 
             <div class="taco-content">
 
                 <p>
-                    1 viande au choix + sauce fromagère
-                    + frites à l'intérieur.
+                    1 viande au choix + sauce
+                    fromagère + frites à l'intérieur.
                 </p>
 
                 <button
                     class="order-btn"
                     onclick="addTaco(1,8)">
+
                     Ajouter au panier
+
                 </button>
 
             </div>
@@ -927,25 +1659,39 @@ header{
         </article>
 
 
+        <!-- 2 VIANDES -->
+
         <article class="taco-card">
 
             <div class="taco-top">
-                <div class="taco-emoji">🌯</div>
-                <div class="taco-name">2 VIANDES</div>
-                <div class="taco-price">10<small>€</small></div>
+
+                <div class="taco-emoji">
+                    🌯
+                </div>
+
+                <div class="taco-name">
+                    2 VIANDES
+                </div>
+
+                <div class="taco-price">
+                    10<small>€</small>
+                </div>
+
             </div>
 
             <div class="taco-content">
 
                 <p>
-                    2 viandes au choix + sauce fromagère
-                    + frites à l'intérieur.
+                    2 viandes au choix + sauce
+                    fromagère + frites à l'intérieur.
                 </p>
 
                 <button
                     class="order-btn"
                     onclick="addTaco(2,10)">
+
                     Ajouter au panier
+
                 </button>
 
             </div>
@@ -953,25 +1699,39 @@ header{
         </article>
 
 
+        <!-- 3 VIANDES -->
+
         <article class="taco-card">
 
             <div class="taco-top">
-                <div class="taco-emoji">🌯</div>
-                <div class="taco-name">3 VIANDES</div>
-                <div class="taco-price">12<small>€</small></div>
+
+                <div class="taco-emoji">
+                    🌯
+                </div>
+
+                <div class="taco-name">
+                    3 VIANDES
+                </div>
+
+                <div class="taco-price">
+                    12<small>€</small>
+                </div>
+
             </div>
 
             <div class="taco-content">
 
                 <p>
-                    3 viandes au choix + sauce fromagère
-                    + frites à l'intérieur.
+                    3 viandes au choix + sauce
+                    fromagère + frites à l'intérieur.
                 </p>
 
                 <button
                     class="order-btn"
                     onclick="addTaco(3,12)">
+
                     Ajouter au panier
+
                 </button>
 
             </div>
@@ -983,9 +1743,13 @@ header{
 </section>
 
 
-<!-- COMPOSER -->
+<!-- =====================================================
+     COMPOSER
+===================================================== -->
 
-<section class="section" id="composer">
+<section
+    class="section"
+    id="composer">
 
     <h2 class="section-title">
         COMPOSE TON TACOS
@@ -995,9 +1759,14 @@ header{
 
         <div class="builder-grid">
 
+
+            <!-- NOMBRE VIANDES -->
+
             <div>
 
-                <h3>① Choisis ton nombre de viandes</h3>
+                <h3>
+                    ① Nombre de viandes
+                </h3>
 
                 <div class="choice-grid">
 
@@ -1005,24 +1774,47 @@ header{
                         class="choice selected"
                         data-meat-count="1"
                         onclick="selectMeatCount(1,this)">
-                        <strong>1 VIANDE</strong>
-                        <small>8 €</small>
+
+                        <strong>
+                            1 VIANDE
+                        </strong>
+
+                        <small>
+                            8 €
+                        </small>
+
                     </div>
+
 
                     <div
                         class="choice"
                         data-meat-count="2"
                         onclick="selectMeatCount(2,this)">
-                        <strong>2 VIANDES</strong>
-                        <small>10 €</small>
+
+                        <strong>
+                            2 VIANDES
+                        </strong>
+
+                        <small>
+                            10 €
+                        </small>
+
                     </div>
+
 
                     <div
                         class="choice"
                         data-meat-count="3"
                         onclick="selectMeatCount(3,this)">
-                        <strong>3 VIANDES</strong>
-                        <small>12 €</small>
+
+                        <strong>
+                            3 VIANDES
+                        </strong>
+
+                        <small>
+                            12 €
+                        </small>
+
                     </div>
 
                 </div>
@@ -1030,28 +1822,49 @@ header{
             </div>
 
 
+            <!-- VIANDES -->
+
             <div>
 
-                <h3>② Choisis tes viandes</h3>
+                <h3>
+                    ② Choisis tes viandes
+                </h3>
 
                 <div class="choice-grid">
 
                     <div
                         class="choice"
+                        data-meat="Poulet"
                         onclick="toggleMeat('Poulet',this)">
-                        <strong>🍗 Poulet</strong>
+
+                        <strong>
+                            🍗 Poulet
+                        </strong>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-meat="Cordon Bleu"
                         onclick="toggleMeat('Cordon Bleu',this)">
-                        <strong>🥩 Cordon Bleu</strong>
+
+                        <strong>
+                            🥩 Cordon Bleu
+                        </strong>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-meat="Steak Haché"
                         onclick="toggleMeat('Steak Haché',this)">
-                        <strong>🥩 Steak Haché</strong>
+
+                        <strong>
+                            🥩 Steak Haché
+                        </strong>
+
                     </div>
 
                 </div>
@@ -1059,34 +1872,61 @@ header{
             </div>
 
 
+            <!-- SAUCES -->
+
             <div>
 
-                <h3>③ Ta sauce</h3>
+                <h3>
+                    ③ Ta sauce
+                </h3>
 
                 <div class="choice-grid">
 
                     <div
                         class="choice selected"
+                        data-sauce="Fromagère"
                         onclick="selectSauce('Fromagère',this)">
-                        <strong>🧀 Fromagère</strong>
+
+                        <strong>
+                            🧀 Fromagère
+                        </strong>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-sauce="Algérienne"
                         onclick="selectSauce('Algérienne',this)">
-                        <strong>🌶️ Algérienne</strong>
+
+                        <strong>
+                            🌶️ Algérienne
+                        </strong>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-sauce="Biggy"
                         onclick="selectSauce('Biggy',this)">
-                        <strong>🍔 Biggy</strong>
+
+                        <strong>
+                            🍔 Biggy
+                        </strong>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-sauce="Curry"
                         onclick="selectSauce('Curry',this)">
-                        <strong>🍛 Curry</strong>
+
+                        <strong>
+                            🍛 Curry
+                        </strong>
+
                     </div>
 
                 </div>
@@ -1094,38 +1934,77 @@ header{
             </div>
 
 
+            <!-- SUPPLEMENTS -->
+
             <div>
 
-                <h3>④ Suppléments</h3>
+                <h3>
+                    ④ Suppléments
+                </h3>
 
                 <div class="choice-grid">
 
                     <div
                         class="choice"
+                        data-extra="Oignons"
                         onclick="toggleExtra('Oignons',1,this)">
-                        <strong>🧅 Oignons</strong>
-                        <small>+1 €</small>
+
+                        <strong>
+                            🧅 Oignons
+                        </strong>
+
+                        <small>
+                            +1 €
+                        </small>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-extra="Cheddar"
                         onclick="toggleExtra('Cheddar',1,this)">
-                        <strong>🧀 Cheddar</strong>
-                        <small>+1 €</small>
+
+                        <strong>
+                            🧀 Cheddar
+                        </strong>
+
+                        <small>
+                            +1 €
+                        </small>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-extra="Bacon"
                         onclick="toggleExtra('Bacon',2,this)">
-                        <strong>🥓 Bacon</strong>
-                        <small>+2 €</small>
+
+                        <strong>
+                            🥓 Bacon
+                        </strong>
+
+                        <small>
+                            +2 €
+                        </small>
+
                     </div>
+
 
                     <div
                         class="choice"
+                        data-extra="Œuf"
                         onclick="toggleExtra('Œuf',1,this)">
-                        <strong>🥚 Œuf</strong>
-                        <small>+1 €</small>
+
+                        <strong>
+                            🥚 Œuf
+                        </strong>
+
+                        <small>
+                            +1 €
+                        </small>
+
                     </div>
 
                 </div>
@@ -1138,14 +2017,21 @@ header{
         <div class="builder-bottom">
 
             <div class="total">
+
                 Total :
-                <span id="builderPrice">8 €</span>
+
+                <span id="builderPrice">
+                    8 €
+                </span>
+
             </div>
 
             <button
                 class="add-builder"
                 onclick="addCustomTaco()">
+
                 🌯 Ajouter mon tacos
+
             </button>
 
         </div>
@@ -1155,47 +2041,259 @@ header{
 </section>
 
 
-<!-- BIGOR -->
+<!-- =====================================================
+     BOISSONS
+===================================================== -->
 
-<section class="section" id="bigor">
+<section
+    class="section"
+    id="boissons">
+
+    <h2 class="section-title">
+        NOS BOISSONS
+    </h2>
+
+    <div class="drinks">
+
+
+        <!-- MONSTER ORIGINAL -->
+
+        <article class="drink-card">
+
+            <div class="drink-top">
+
+                <div class="monster-can monster-original">
+
+                    <div class="monster-logo">
+                        M
+                    </div>
+
+                    <div class="monster-text">
+                        MONSTER
+                    </div>
+
+                    <small>
+                        ENERGY
+                    </small>
+
+                </div>
+
+                <div class="taco-name">
+                    ORIGINAL
+                </div>
+
+                <div class="taco-price">
+                    3<small>€</small>
+                </div>
+
+            </div>
+
+            <div class="taco-content">
+
+                <p>
+                    Monster Energy Original.
+                    Le grand classique de la gamme Monster.
+                </p>
+
+                <button
+                    class="order-btn"
+                    onclick="addDrink('Monster Original',3)">
+
+                    Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- MONSTER ULTRA -->
+
+        <article class="drink-card">
+
+            <div class="drink-top">
+
+                <div class="monster-can monster-ultra">
+
+                    <div class="monster-logo">
+                        M
+                    </div>
+
+                    <div class="monster-text">
+                        MONSTER
+                    </div>
+
+                    <small>
+                        ULTRA
+                    </small>
+
+                </div>
+
+                <div class="taco-name">
+                    ULTRA
+                </div>
+
+                <div class="taco-price">
+                    3<small>€</small>
+                </div>
+
+            </div>
+
+            <div class="taco-content">
+
+                <p>
+                    Monster Ultra — zéro sucre,
+                    légère et rafraîchissante.
+                </p>
+
+                <button
+                    class="order-btn"
+                    onclick="addDrink('Monster Ultra Zéro Sucre',3)">
+
+                    Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- MONSTER JUICED -->
+
+        <article class="drink-card">
+
+            <div class="drink-top">
+
+                <div class="monster-can monster-juiced">
+
+                    <div class="monster-logo">
+                        M
+                    </div>
+
+                    <div class="monster-text">
+                        MONSTER
+                    </div>
+
+                    <small>
+                        JUICED
+                    </small>
+
+                </div>
+
+                <div class="taco-name">
+                    JUICED
+                </div>
+
+                <div class="taco-price">
+                    3<small>€</small>
+                </div>
+
+            </div>
+
+            <div class="taco-content">
+
+                <p>
+                    Monster Juiced + Énergie,
+                    avec une saveur fruitée intense.
+                </p>
+
+                <button
+                    class="order-btn"
+                    onclick="addDrink('Monster Juiced + Énergie',3)">
+
+                    Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FORMULE BIGOR
+===================================================== -->
+
+<section
+    class="section"
+    id="bigor">
 
     <div class="bigor">
 
         <div class="bigor-title">
-            LA <span>FORMULE DU BIGOR</span>
+
+            LA
+            <span>
+                FORMULE DU BIGOR
+            </span>
+
         </div>
 
-        <p style="color:#aaa;margin-top:8px;">
+        <p class="bigor-subtitle">
             Le tacos + frites + boisson
         </p>
+
 
         <div class="bigor-items">
 
             <div class="bigor-item">
-                <div class="icon">🍟</div>
-                <h4>Frites</h4>
+
+                <div class="icon">
+                    🍟
+                </div>
+
+                <h4>
+                    Frites
+                </h4>
+
             </div>
 
-            <div class="bigor-item">
-                <div class="icon">🌯</div>
-                <h4>Tacos</h4>
-            </div>
 
             <div class="bigor-item">
-                <div class="icon">🥤</div>
-                <h4>Boisson</h4>
+
+                <div class="icon">
+                    🌯
+                </div>
+
+                <h4>
+                    Tacos
+                </h4>
+
+            </div>
+
+
+            <div class="bigor-item">
+
+                <div class="icon">
+                    🥤
+                </div>
+
+                <h4>
+                    Boisson
+                </h4>
+
             </div>
 
         </div>
+
 
         <div class="bigor-price">
             +15 €
         </div>
 
+
         <button
             class="order-btn"
             onclick="addBigor()">
+
             Ajouter la formule
+
         </button>
 
     </div>
@@ -1203,9 +2301,13 @@ header{
 </section>
 
 
-<!-- LIVRAISON -->
+<!-- =====================================================
+     LIVRAISON
+===================================================== -->
 
-<section class="section" id="livraison">
+<section
+    class="section"
+    id="livraison">
 
     <h2 class="section-title">
         LIVRAISON
@@ -1213,11 +2315,16 @@ header{
 
     <div class="delivery">
 
+
         <div class="delivery-box">
 
-            <div class="delivery-icon">🛵</div>
+            <div class="delivery-icon">
+                🛵
+            </div>
 
-            <h3>Livraison</h3>
+            <h3>
+                Livraison
+            </h3>
 
             <div class="paid">
                 +2 €
@@ -1232,9 +2339,13 @@ header{
 
         <div class="delivery-box">
 
-            <div class="delivery-icon">✓</div>
+            <div class="delivery-icon">
+                ✓
+            </div>
 
-            <h3>3 VIANDES</h3>
+            <h3>
+                3 VIANDES
+            </h3>
 
             <div class="free">
                 LIVRAISON OFFERTE
@@ -1253,7 +2364,9 @@ header{
 </main>
 
 
-<!-- HALAL -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="halal">
 
@@ -1262,13 +2375,15 @@ header{
     </div>
 
     <h2>
-        ⭐ Toutes nos viandes sont certifiées halal ⭐
+        ⭐ TOUTES NOS VIANDES SONT CERTIFIÉES HALAL ⭐
     </h2>
 
 </footer>
 
 
-<!-- PANIER -->
+<!-- =====================================================
+     PANIER
+===================================================== -->
 
 <div
     class="cart-overlay"
@@ -1277,34 +2392,60 @@ header{
 
     <aside class="cart">
 
+
         <div class="cart-header">
 
-            <h2>MON PANIER</h2>
+            <h2>
+                MON PANIER
+            </h2>
 
             <button
                 class="close-cart"
                 onclick="closeCart()">
+
                 ×
+
             </button>
 
         </div>
 
+
         <div
             class="cart-items"
             id="cartItems">
+
         </div>
+
 
         <div class="cart-footer">
 
-            <div class="cart-total">
-                <span>Total</span>
-                <span id="cartTotal">0 €</span>
+            <div class="delivery-total">
+                Livraison :
+                <strong id="deliveryPrice">
+                    0 €
+                </strong>
             </div>
+
+
+            <div class="cart-total">
+
+                <span>
+                    TOTAL
+                </span>
+
+                <span id="cartTotal">
+                    0 €
+                </span>
+
+            </div>
+
 
             <button
                 class="checkout"
                 onclick="checkout()">
-                COMMANDER →
+
+                COMMANDER SUR WHATSAPP →
+
             </button>
 
         </div>
@@ -1314,17 +2455,22 @@ header{
 </div>
 
 
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
 <div
     class="toast"
     id="toast">
+
 </div>
 
 
 <script>
 
-/* =========================
+/* =====================================================
    VARIABLES
-========================= */
+===================================================== */
 
 let cart = [];
 
@@ -1336,173 +2482,175 @@ let selectedSauce = "Fromagère";
 
 let selectedExtras = [];
 
+let toastTimer;
 
-/* =========================
-   PRIX
-========================= */
 
-function basePrice(){
+/* =====================================================
+   PRIX TACOS
+===================================================== */
 
-    if(meatCount === 1) return 8;
+function basePrice() {
 
-    if(meatCount === 2) return 10;
+    if (meatCount === 1) {
+        return 8;
+    }
+
+    if (meatCount === 2) {
+        return 10;
+    }
 
     return 12;
-
 }
 
 
-/* =========================
-   CHOIX VIANDES
-========================= */
+/* =====================================================
+   CHOIX NOMBRE DE VIANDES
+===================================================== */
 
-function selectMeatCount(count,element){
+function selectMeatCount(count, element) {
 
     meatCount = count;
 
     selectedMeats = [];
 
     document
-        .querySelectorAll('[data-meat-count]')
-        .forEach(el=>{
-            el.classList.remove('selected');
+        .querySelectorAll("[data-meat-count]")
+        .forEach(item => {
+            item.classList.remove("selected");
         });
 
-    element.classList.add('selected');
+    element.classList.add("selected");
+
 
     document
-        .querySelectorAll('.choice')
-        .forEach(el=>{
-            if(
-                el.innerText.includes("Poulet") ||
-                el.innerText.includes("Cordon Bleu") ||
-                el.innerText.includes("Steak Haché")
-            ){
-                el.classList.remove('selected');
-            }
+        .querySelectorAll("[data-meat]")
+        .forEach(item => {
+            item.classList.remove("selected");
         });
+
 
     updateBuilderPrice();
 
     showToast(
-        `${count} viande${count>1?'s':''} sélectionnée${count>1?'s':''}`
+        `${count} viande${count > 1 ? "s" : ""} sélectionnée${count > 1 ? "s" : ""}`
     );
 }
 
 
-function toggleMeat(name,element){
+/* =====================================================
+   CHOIX VIANDES
+===================================================== */
 
-    const index = selectedMeats.indexOf(name);
+function toggleMeat(name, element) {
 
-    if(index !== -1){
+    const index =
+        selectedMeats.indexOf(name);
 
-        selectedMeats.splice(index,1);
 
-        element.classList.remove('selected');
+    if (index !== -1) {
+
+        selectedMeats.splice(index, 1);
+
+        element.classList.remove("selected");
 
         return;
     }
 
-    if(selectedMeats.length >= meatCount){
+
+    if (selectedMeats.length >= meatCount) {
 
         showToast(
-            `Maximum ${meatCount} viande${meatCount>1?'s':''}`
+            `Maximum ${meatCount} viande${meatCount > 1 ? "s" : ""}`
         );
 
         return;
     }
 
+
     selectedMeats.push(name);
 
-    element.classList.add('selected');
-
+    element.classList.add("selected");
 }
 
 
-/* =========================
-   SAUCES
-========================= */
+/* =====================================================
+   SAUCE
+===================================================== */
 
-function selectSauce(name,element){
+function selectSauce(name, element) {
 
     selectedSauce = name;
 
+
     document
-        .querySelectorAll('.choice')
-        .forEach(el=>{
-
-            if(
-                el.innerText.includes("Fromagère") ||
-                el.innerText.includes("Algérienne") ||
-                el.innerText.includes("Biggy") ||
-                el.innerText.includes("Curry")
-            ){
-                el.classList.remove('selected');
-            }
-
+        .querySelectorAll("[data-sauce]")
+        .forEach(item => {
+            item.classList.remove("selected");
         });
 
-    element.classList.add('selected');
 
+    element.classList.add("selected");
 }
 
 
-/* =========================
-   EXTRAS
-========================= */
+/* =====================================================
+   SUPPLEMENTS
+===================================================== */
 
-function toggleExtra(name,price,element){
+function toggleExtra(name, price, element) {
 
-    const index = selectedExtras.findIndex(
-        x => x.name === name
-    );
+    const index =
+        selectedExtras.findIndex(
+            extra => extra.name === name
+        );
 
-    if(index !== -1){
 
-        selectedExtras.splice(index,1);
+    if (index !== -1) {
 
-        element.classList.remove('selected');
+        selectedExtras.splice(index, 1);
 
-    }else{
+        element.classList.remove("selected");
+
+    } else {
 
         selectedExtras.push({
-            name:name,
-            price:price
+            name: name,
+            price: price
         });
 
-        element.classList.add('selected');
-
+        element.classList.add("selected");
     }
 
-    updateBuilderPrice();
 
+    updateBuilderPrice();
 }
 
 
-/* =========================
-   CALCUL PRIX
-========================= */
+/* =====================================================
+   CALCUL PRIX COMPOSITEUR
+===================================================== */
 
-function updateBuilderPrice(){
+function updateBuilderPrice() {
 
     let total = basePrice();
 
-    selectedExtras.forEach(
-        extra => total += extra.price
-    );
 
-    document.getElementById(
-        "builderPrice"
-    ).textContent = total + " €";
+    selectedExtras.forEach(extra => {
+        total += extra.price;
+    });
 
+
+    document
+        .getElementById("builderPrice")
+        .textContent = total + " €";
 }
 
 
-/* =========================
-   AJOUT TACOS SIMPLE
-========================= */
+/* =====================================================
+   AJOUT TACOS CLASSIQUE
+===================================================== */
 
-function addTaco(number,price){
+function addTaco(number, price) {
 
     addToCart({
 
@@ -1513,107 +2661,180 @@ function addTaco(number,price){
             Date.now(),
 
         name:
-            `Tacos ${number} viande${number>1?'s':''}`,
+            `Tacos ${number} viande${number > 1 ? "s" : ""}`,
 
         description:
-            "Tacos classique",
+            "Tacos classique • sauce fromagère • frites",
 
-        price:price,
+        price: price,
 
-        quantity:1
+        quantity: 1,
+
+        meatNumber: number
 
     });
-
 }
 
 
-/* =========================
-   TACOS PERSONNALISÉ
-========================= */
+/* =====================================================
+   AJOUT TACOS PERSONNALISÉ
+===================================================== */
 
-function addCustomTaco(){
+function addCustomTaco() {
 
-    if(selectedMeats.length !== meatCount){
+    if (selectedMeats.length !== meatCount) {
 
         showToast(
-            `Choisis exactement ${meatCount} viande${meatCount>1?'s':''}.`
+            `Choisis exactement ${meatCount} viande${meatCount > 1 ? "s" : ""}.`
         );
 
         return;
     }
 
+
     let price = basePrice();
 
-    selectedExtras.forEach(
-        extra => price += extra.price
-    );
 
-    const extrasText =
-        selectedExtras.length
-        ?
-        " + " +
-        selectedExtras
-            .map(e=>e.name)
-            .join(", ")
-        :
-        "";
+    selectedExtras.forEach(extra => {
+        price += extra.price;
+    });
+
+
+    let description =
+        selectedMeats.join(" + ")
+        +
+        " • Sauce "
+        +
+        selectedSauce;
+
+
+    if (selectedExtras.length > 0) {
+
+        description +=
+            " • Suppléments : "
+            +
+            selectedExtras
+                .map(extra => extra.name)
+                .join(", ");
+    }
+
 
     addToCart({
 
-        id:"custom-" + Date.now(),
+        id:
+            "custom-" +
+            Date.now(),
 
         name:
-            `Tacos ${meatCount} viande${meatCount>1?'s':''}`,
+            `Tacos personnalisé ${meatCount} viande${meatCount > 1 ? "s" : ""}`,
 
         description:
-            selectedMeats.join(" + ")
-            +
-            " • Sauce "
-            +
-            selectedSauce
-            +
-            extrasText,
+            description,
 
-        price:price,
+        price:
+            price,
 
-        quantity:1
+        quantity:
+            1,
+
+        meatNumber:
+            meatCount
 
     });
-
 }
 
 
-/* =========================
-   BIGOR
-========================= */
+/* =====================================================
+   BOISSONS
+===================================================== */
 
-function addBigor(){
+function addDrink(name, price) {
 
     addToCart({
 
-        id:"bigor-" + Date.now(),
+        id:
+            "drink-" +
+            Date.now(),
 
-        name:"Formule du Bigor",
+        name:
+            name,
+
+        description:
+            "Canette Monster",
+
+        price:
+            price,
+
+        quantity:
+            1,
+
+        isDrink:
+            true
+
+    });
+}
+
+
+/* =====================================================
+   FORMULE BIGOR
+===================================================== */
+
+function addBigor() {
+
+    addToCart({
+
+        id:
+            "bigor-" +
+            Date.now(),
+
+        name:
+            "Formule du Bigor",
 
         description:
             "Tacos + frites + boisson",
 
-        price:15,
+        price:
+            15,
 
-        quantity:1
+        quantity:
+            1,
+
+        isBigor:
+            true
 
     });
-
 }
 
 
-/* =========================
-   PANIER
-========================= */
+/* =====================================================
+   AJOUT AU PANIER
+===================================================== */
 
-function addToCart(item){
+function addToCart(item) {
 
-    cart.push(item);
+    /*
+       Si exactement le même produit existe,
+       on augmente directement sa quantité.
+    */
+
+    const existing =
+        cart.find(
+            product =>
+                product.name === item.name &&
+                product.description === item.description
+        );
+
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push(item);
+
+    }
+
 
     renderCart();
 
@@ -1622,213 +2843,269 @@ function addToCart(item){
     showToast(
         "✓ Ajouté au panier"
     );
-
 }
 
 
-function renderCart(){
+/* =====================================================
+   AFFICHAGE PANIER
+===================================================== */
+
+function renderCart() {
 
     const container =
         document.getElementById("cartItems");
 
-    if(cart.length === 0){
+
+    if (cart.length === 0) {
 
         container.innerHTML = `
             <div class="empty">
-                🛒<br><br>
+                🛒
+                <br><br>
                 Ton panier est vide.
             </div>
         `;
 
-    }else{
+    } else {
 
         container.innerHTML =
-            cart.map((item,index)=>`
+            cart
+                .map((item, index) => `
 
-                <div class="cart-item">
+                    <div class="cart-item">
 
-                    <div class="cart-item-top">
+                        <div class="cart-item-top">
 
-                        <div>
+                            <div>
 
-                            <div class="cart-item-name">
-                                ${item.name}
+                                <div class="cart-item-name">
+                                    ${item.name}
+                                </div>
+
+                                <div class="cart-item-description">
+                                    ${item.description}
+                                </div>
+
                             </div>
 
-                            <div style="font-size:13px;color:#888;margin-top:4px;">
-                                ${item.description}
+                            <div class="cart-item-price">
+                                ${item.price * item.quantity} €
                             </div>
 
                         </div>
 
-                        <div class="cart-item-price">
-                            ${item.price * item.quantity} €
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="changeQuantity(${index},-1)">
+                                −
+                            </button>
+
+                            <strong>
+                                ${item.quantity}
+                            </strong>
+
+                            <button
+                                onclick="changeQuantity(${index},1)">
+                                +
+                            </button>
+
+                            <button
+                                class="remove"
+                                onclick="removeItem(${index})">
+
+                                Supprimer
+
+                            </button>
+
                         </div>
 
                     </div>
 
-                    <div class="quantity">
-
-                        <button
-                            onclick="changeQuantity(${index},-1)">
-                            −
-                        </button>
-
-                        <strong>
-                            ${item.quantity}
-                        </strong>
-
-                        <button
-                            onclick="changeQuantity(${index},1)">
-                            +
-                        </button>
-
-                        <button
-                            class="remove"
-                            onclick="removeItem(${index})">
-                            Supprimer
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `).join("");
-
+                `)
+                .join("");
     }
 
 
-    let total = 0;
+    calculateCartTotal();
+}
 
-    cart.forEach(
-        item =>
-            total += item.price * item.quantity
-    );
+
+/* =====================================================
+   CALCUL TOTAL
+===================================================== */
+
+function calculateCartTotal() {
+
+    let subtotal = 0;
+
+
+    cart.forEach(item => {
+
+        subtotal +=
+            item.price *
+            item.quantity;
+
+    });
+
 
     /*
-       Livraison :
-       gratuite si au moins un tacos
-       3 viandes
+       Livraison gratuite dès qu'il y a
+       un tacos 3 viandes.
     */
-
-    let delivery = 0;
 
     const hasThreeMeat =
         cart.some(
             item =>
-                item.name.includes("3 viande")
+                item.meatNumber === 3
         );
 
-    if(cart.length > 0 && !hasThreeMeat){
+
+    let delivery = 0;
+
+
+    if (cart.length > 0 && !hasThreeMeat) {
 
         delivery = 2;
 
     }
 
-    total += delivery;
 
-    document.getElementById(
-        "cartTotal"
-    ).textContent = total + " €";
+    const total =
+        subtotal +
+        delivery;
 
-    document.getElementById(
-        "cartCount"
-    ).textContent =
+
+    document
+        .getElementById("deliveryPrice")
+        .textContent =
+        delivery + " €";
+
+
+    document
+        .getElementById("cartTotal")
+        .textContent =
+        total + " €";
+
+
+    document
+        .getElementById("cartCount")
+        .textContent =
         cart.reduce(
-            (sum,item)=>sum + item.quantity,
+            (sum, item) =>
+                sum + item.quantity,
             0
         );
-
 }
 
 
-/* =========================
-   QUANTITÉS
-========================= */
+/* =====================================================
+   QUANTITES
+===================================================== */
 
-function changeQuantity(index,change){
+function changeQuantity(index, change) {
 
     cart[index].quantity += change;
 
-    if(cart[index].quantity <= 0){
 
-        cart.splice(index,1);
+    if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
 
     }
 
-    renderCart();
 
+    renderCart();
 }
 
 
-function removeItem(index){
+/* =====================================================
+   SUPPRIMER
+===================================================== */
 
-    cart.splice(index,1);
+function removeItem(index) {
+
+    cart.splice(index, 1);
 
     renderCart();
-
 }
 
 
-/* =========================
-   PANIER OUVERTURE
-========================= */
+/* =====================================================
+   OUVRIR PANIER
+===================================================== */
 
-function openCart(){
+function openCart() {
 
     document
         .getElementById("cartOverlay")
         .classList.add("open");
-
 }
 
 
-function closeCart(){
+/* =====================================================
+   FERMER PANIER
+===================================================== */
+
+function closeCart() {
 
     document
         .getElementById("cartOverlay")
         .classList.remove("open");
-
 }
 
 
-function closeCartOutside(event){
+function closeCartOutside(event) {
 
-    if(event.target.id === "cartOverlay"){
+    if (
+        event.target.id === "cartOverlay"
+    ) {
 
         closeCart();
-
     }
-
 }
 
 
-/* =========================
-   COMMANDER
-========================= */
+/* =====================================================
+   COMMANDER WHATSAPP
+===================================================== */
 
-function checkout(){
+function checkout() {
 
-    if(cart.length === 0){
+    if (cart.length === 0) {
 
         showToast(
             "Ton panier est vide."
         );
 
         return;
-
     }
 
+
     /*
-       Ici tu peux ensuite connecter
-       WhatsApp, Stripe, SumUp,
-       une API de commande, etc.
+       ==========================================
+       REMPLACE CE NUMÉRO PAR TON NUMÉRO
+       WHATSAPP
+       ==========================================
+
+       Exemple :
+       06 12 34 56 78
+
+       devient :
+
+       33612345678
     */
+
+    const phone =
+        "33600000000";
+
 
     let message =
         "🍟 NOUVELLE COMMANDE\n\n";
 
-    cart.forEach(item=>{
+
+    cart.forEach(item => {
 
         message +=
             `${item.quantity}x ${item.name}\n`;
@@ -1841,48 +3118,55 @@ function checkout(){
 
     });
 
+
     const hasThreeMeat =
         cart.some(
             item =>
-                item.name.includes("3 viande")
+                item.meatNumber === 3
         );
 
-    if(!hasThreeMeat){
 
-        message +=
-            "🚚 Livraison : +2 €\n\n";
+    let subtotal = 0;
 
-    }else{
+
+    cart.forEach(item => {
+
+        subtotal +=
+            item.price *
+            item.quantity;
+
+    });
+
+
+    const delivery =
+        hasThreeMeat
+            ? 0
+            : 2;
+
+
+    const total =
+        subtotal +
+        delivery;
+
+
+    if (delivery === 0) {
 
         message +=
             "🚚 Livraison : OFFERTE\n\n";
 
+    } else {
+
+        message +=
+            "🚚 Livraison : +2 €\n\n";
+
     }
 
-    let total = 0;
-
-    cart.forEach(
-        item =>
-            total +=
-            item.price * item.quantity
-    );
-
-    if(!hasThreeMeat)
-        total += 2;
 
     message +=
         "💰 TOTAL : " +
         total +
         " €";
 
-    /*
-       Pour WhatsApp :
-       remplace le numéro ci-dessous
-       par ton numéro.
-    */
-
-    const phone =
-        "33600000000";
 
     const url =
         "https://wa.me/" +
@@ -1890,45 +3174,49 @@ function checkout(){
         "?text=" +
         encodeURIComponent(message);
 
+
     window.open(
         url,
         "_blank"
     );
-
 }
 
 
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
-let toastTimer;
-
-function showToast(message){
+function showToast(message) {
 
     const toast =
         document.getElementById("toast");
 
-    toast.textContent = message;
+
+    toast.textContent =
+        message;
+
 
     toast.classList.add("show");
 
+
     clearTimeout(toastTimer);
+
 
     toastTimer =
         setTimeout(
-            ()=>{
+            () => {
+
                 toast.classList.remove("show");
+
             },
             2200
         );
-
 }
 
 
-/* =========================
+/* =====================================================
    INITIALISATION
-========================= */
+===================================================== */
 
 renderCart();
 
